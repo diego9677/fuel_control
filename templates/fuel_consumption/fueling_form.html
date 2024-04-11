@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load formclss %}
+
+
+{% block title %}Carga de Combustible{% endblock title %}
+    
+
+
+{% block content %}
+    <section class="flex flex-col">
+        <header class="h-16 border-b border-neutral-300 flex items-center justify-between px-4">
+            <a href="{% url 'fueling-list' %}" class="w-10 h-10 btn-secondary">
+                <i class="las la-arrow-left"></i>
+            </a>
+            <h5 class="text-lg font-semibold">
+                {% if object %}Editar{% else %}Nueva{% endif %} Carga de Combustible
+            </h5>
+        </header>
+        <form class="flex flex-col gap-6 px-4" method="post">{% csrf_token %}
+
+            <label class="flex flex-col gap-1">
+                <span class="text-base font-normal text-neutral-700">{{ form.fuel_type.label }}</span>
+                {{ form.fuel_type|addclss:"input h-10" }}
+            </label>
+            <label class="flex flex-col gap-1">
+                <span class="text-base font-normal text-neutral-700">{{ form.upload_date.label }}</span>
+                {{ form.upload_date|addclss:"input h-10" }}
+            </label>
+            <label class="flex flex-col gap-1">
+                <span class="text-base font-normal text-neutral-700">{{ form.unit_price.label }}</span>
+                {{ form.unit_price|addclss:"input h-10" }}
+            </label>
+            <label class="flex flex-col gap-1">
+                <span class="text-base font-normal text-neutral-700">{{ form.liters.label }}</span>
+                {{ form.liters|addclss:"input h-10" }}
+            </label>
+            <label class="flex flex-col gap-1">
+                <span class="text-base font-normal text-neutral-700">{{ form.total.label }}</span>
+                {{ form.total|addclss:"input h-10" }}
+            </label>
+
+            <div class="flex gap-2 items-center">
+                
+                {% if object %}    
+                    <div class="flex-1 flex">
+                        <a href="{% url 'fueling-delete' object.pk %}" class="flex-1 h-10 text-center btn-danger">Eliminar</a>
+                    </div>
+                {% endif %}
+                    
+                <div class="flex-1">
+                    <button type="submit" class="w-full btn-primary h-10">
+                        Guardar
+                    </button>
+                </div>
+            </div>
+        </form>
+    </section>
+{% endblock content %}
+    
