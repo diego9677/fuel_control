@@ -4,8 +4,37 @@
 
 
 {% block content %}
-    <div>
-        <h2>Home</h2>
-    </div>
+    <section class="h-full flex flex-col">
+        
+        <header class="h-12 border-b border-neutral-300 flex items-center px-4">
+            <div class="flex-1">
+                <h5 class="text-base text-center font-semibold text-neutral-700">Dashboard</h5>
+            </div>
+
+            <a href="{% url 'fueling-list' %}" class="w-8 h-8 btn-secondary">
+                <i class="las la-list"></i>
+            </a>
+        </header>
+
+        <main class="flex-1 overflow-auto flex flex-col bg-neutral-50 px-4">
+            <section class="grid grid-cols-2 gap-2 py-2">
+                <div class="border bg-white rounded-lg col-span-1 flex flex-col justify-center items-center h-20 shadow-md">
+                    <h6 class="text-sm font-light text-neutral-800">Gasto</h6>
+                    <p class="flex items-center gap-1">
+                        <span class="text-xl font-semibold text-neutral-700">{{ bills }}</span>
+                        <span class="text-sm font-light text-neutral-600">Bs</span>
+                    </p>
+                </div>
+                <div class="border bg-white rounded-lg col-span-1 flex flex-col justify-center items-center h-20 shadow-md">
+                    <h6 class="text-sm font-light text-neutral-800">Consumo</h6>
+                    <p class="flex items-center gap-1">
+                        <span class="text-xl font-semibold text-neutral-700">{{ consumption }}</span>
+                        <span class="text-sm font-light text-neutral-600">Lts</span>
+                    </p>
+                </div>
+            </section>
+        </main>
+
+    </section>
 {% endblock content %}
     

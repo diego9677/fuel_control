@@ -6,30 +6,43 @@
 
 {% block content %}
     <section class="flex flex-col h-full">
-        <div class="border-b h-16 flex items-center px-4">
-            <a href="{% url 'fueling-create' %}" class="w-10 h-10 btn-primary">
+        <header class="h-12 border-b flex items-center px-4">
+            
+            <a href="{% url 'index' %}" class="w-8 h-8 btn-secondary">
+                <i class="las la-arrow-left"></i>
+            </a>
+
+            <div class="flex-1">
+                <h5 class="text-base text-center font-semibold text-neutral-700">Listado de cargas de combustible</h5>
+            </div>
+
+        </header>
+
+        <div class="border-b h-12 flex items-center px-4">
+            <a href="{% url 'fueling-create' %}" class="w-8 h-8 btn-primary">
                 <i class="las la-plus"></i>
             </a>
-            <div class="w-20"></div>
+            <div class="w-10"></div>
             <div class="flex-1 flex items-center gap-2">
                 <div class="flex-1">
-                    <input type="text" placeholder="Busar..." class="input h-10">
+                    <input type="text" placeholder="Busar..." class="input h-8">
                 </div>
-                <button type="button" class="btn-success w-10 h-10">
+                <button type="button" class="btn-success w-8 h-8">
                     <i class="las la-search"></i>
                 </button>
             </div>
         </div>
-        <div class="flex-1 border-b border-blue-600 overflow-auto">
+        
+        <div class="flex-1 overflow-auto">
             
             {% for fueling in object_list %}
-                <a class="px-4 py-2 flex justify-between items-start border-b" href="{% url 'fueling-update' fueling.pk %}">
+                <a class="px-4 py-2 flex justify-between items-start border-b border-neutral-300" href="{% url 'fueling-update' fueling.pk %}">
                     <div class="flex flex-col gap-1">
-                        <h6 class="text-lg font-medium">{{ fueling.fuel_type.get_name_display }}</h6>
-                        <span class="text-base font-light">{{ fueling.liters }} L</span>
-                        <span class="text-base font-light">{{ fueling.total }} Bs</span>
+                        <h6 class="text-base font-medium">{{ fueling.fuel_type.get_name_display }}</h6>
+                        <span class="text-sm font-light">{{ fueling.liters }} L</span>
+                        <span class="text-sm font-light">{{ fueling.total }} Bs</span>
                     </div>
-                    <span class="text-base font-light">{{ fueling.upload_date|date:'d-m-y, H:i' }}</span>
+                    <span class="text-sm font-light">{{ fueling.upload_date|date:'d-m-y, H:i' }}</span>
                 </a>
             {% endfor %}
                 

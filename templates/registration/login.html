@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load formclss %}
+
+
+{% block title %}
+    Iniciar Sesión
+{% endblock title %}
+
+
+{% block content %}
+    <section class="h-full flex justify-center items-center">
+        <form method="post" class="p-4 flex flex-col gap-6 w-full">{% csrf_token %}    
+            <h4 class="text-lg font-semibold text-neutral-700 text-center">Iniciar Sesión</h4>
+
+            {% if form.non_field_errors %}
+                {% for error in form.non_field_errors %}    
+                    <p class="text-sm text-red-600 font-semibold">
+                        {{ error }}
+                    </p>
+                {% endfor %}
+            {% endif %}
+
+            <label class="flex flex-col gap-1"> 
+                <span class="text-sm font-normal text-neutral-700">{{ form.username.label_tag }}</span>
+                {{ form.username|addclss:"input h-10" }}
+            </label>
+            <label class="flex flex-col gap-1">
+                <span class="text-sm font-normal text-neutral-700">{{ form.password.label_tag }}</span>
+                {{ form.password|addclss:"input h-10" }}
+            </label>
+
+            <div class="">
+                <button class="btn-primary h-10 w-full">Acceder</button>
+            </div>
+        </form>
+    </section>
+{% endblock content %}
+    
+    

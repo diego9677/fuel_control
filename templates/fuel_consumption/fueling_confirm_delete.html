@@ -5,15 +5,15 @@
 {% endblock title %}
 
 {% block content %}
-    <section class="px-4 py-6">
-        <form method="post" class="flex flex-col gap-5">{% csrf_token %}
-            <p class="text-normal font-medium text-neutral-700">¿Esta seguro de elminar la carga de combustible "{{object.pk}}"?</p>
+    <section class="px-4 py-6 bg-black bg-opacity-60 flex justify-center items-center h-full">
+        <form method="post" class="flex flex-col gap-5 bg-white p-4 shadow-md rounded-md">{% csrf_token %}
+            <p class="text-lg font-normal text-neutral-700">¿Esta seguro de elminar la carga de combustible "{{object.pk}}"?</p>
             <div class="flex gap-2 items-center">
                 <div class="flex-1 flex">
-                    <a href="{% url 'fueling-update' object.pk %}" class="flex-1 text-center h-10 btn-secondary">Cancelar</a>
+                    <a href="{% url 'fueling-update' object.pk %}" class="flex-1 text-center h-8 btn-secondary">Cancelar</a>
                 </div>
                 <div class="flex-1">
-                    <button type="submit" class="w-full h-10 btn-danger">
+                    <button type="submit" class="w-full h-8 btn-danger">
                         Si, Eliminar
                     </button>
                 </div>

@@ -8,34 +8,36 @@
 
 {% block content %}
     <section class="flex flex-col">
-        <header class="h-16 border-b border-neutral-300 flex items-center justify-between px-4">
-            <a href="{% url 'fueling-list' %}" class="w-10 h-10 btn-secondary">
+        <header class="h-16 border-b border-neutral-300 flex items-center px-4">
+            <a href="{% url 'fueling-list' %}" class="w-8 h-8 btn-secondary">
                 <i class="las la-arrow-left"></i>
             </a>
-            <h5 class="text-lg font-semibold">
-                {% if object %}Editar{% else %}Nueva{% endif %} Carga de Combustible
-            </h5>
+            <div class="flex-1">
+                <h5 class="text-base text-neutral-700 font-semibold text-center">
+                    {% if object %}Editar{% else %}Nueva{% endif %} Carga de Combustible
+                </h5>
+            </div>
         </header>
         <form class="flex flex-col gap-6 px-4" method="post">{% csrf_token %}
 
             <label class="flex flex-col gap-1">
-                <span class="text-base font-normal text-neutral-700">{{ form.fuel_type.label }}</span>
+                <span class="text-sm font-normal text-neutral-700">{{ form.fuel_type.label }}</span>
                 {{ form.fuel_type|addclss:"input h-10" }}
             </label>
             <label class="flex flex-col gap-1">
-                <span class="text-base font-normal text-neutral-700">{{ form.upload_date.label }}</span>
+                <span class="text-sm font-normal text-neutral-700">{{ form.upload_date.label }}</span>
                 {{ form.upload_date|addclss:"input h-10" }}
             </label>
             <label class="flex flex-col gap-1">
-                <span class="text-base font-normal text-neutral-700">{{ form.unit_price.label }}</span>
+                <span class="text-sm font-normal text-neutral-700">{{ form.unit_price.label }}</span>
                 {{ form.unit_price|addclss:"input h-10" }}
             </label>
             <label class="flex flex-col gap-1">
-                <span class="text-base font-normal text-neutral-700">{{ form.liters.label }}</span>
+                <span class="text-sm font-normal text-neutral-700">{{ form.liters.label }}</span>
                 {{ form.liters|addclss:"input h-10" }}
             </label>
             <label class="flex flex-col gap-1">
-                <span class="text-base font-normal text-neutral-700">{{ form.total.label }}</span>
+                <span class="text-sm font-normal text-neutral-700">{{ form.total.label }}</span>
                 {{ form.total|addclss:"input h-10" }}
             </label>
 

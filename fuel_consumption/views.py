@@ -1,11 +1,36 @@
+from typing import Any
+from datetime import timedelta
 from django.forms.models import BaseModelForm
 from django.http import HttpResponse
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import ListView, DeleteView, CreateView, UpdateView
+from django.views.generic import ListView, DeleteView, CreateView, UpdateView, TemplateView
+from django.utils import timezone
 
 from .forms import FuelingForm
 from .models import Fueling
+
+
+class DashboardTemplateView(LoginRequiredMixin, TemplateView):
+    template_name = 'index.html'
+
+    def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
+        context = super().get_context_data(**kwargs)
+        begin = timezone.now().replace(day=1, hour=0, minute=0, second=0)
+        end = timezone.now().replace(day=1, month=begin.month + 1, hour=23, minute=59, second=59) - timedelta(days=1)
+        qs = Fueling.objects.filter(user=self.request.user, upload_date__range=(begin, end)).all()
+
+        consumption = 0
+        bills = 0
+
+        for f in qs:
+            bills += f.total
+            consumption += f.liters
+
+        context['consumption'] = round(consumption)
+        context['bills'] = round(bills)
+
+        return context
 
 
 class FuelingListView(LoginRequiredMixin, ListView):
