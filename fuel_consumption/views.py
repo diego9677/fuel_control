@@ -28,10 +28,12 @@ class DashboardTemplateView(LoginRequiredMixin, TemplateView):
             bills += f.total
             liters += f.liters
 
+        distance = (qs.last().odometer if qs.last() else 0) - (qs.first().odometer if qs.first() else 0)
+
+        context['distance'] = round(distance)
         context['liters'] = round(liters)
         context['bills'] = round(bills)
-        context['distance'] = round(qs.last().odometer - qs.first().odometer)
-        context['odometer'] = round(qs.last().odometer)
+        context['odometer'] = round(qs.last().odometer if qs.last() else 0)
 
         return context
 
