@@ -19,17 +19,31 @@
         <main class="flex-1 overflow-auto flex flex-col bg-neutral-50 px-4">
             <section class="grid grid-cols-2 gap-2 py-2">
                 <div class="border bg-white rounded-lg col-span-1 flex flex-col justify-center items-center h-20 shadow-md">
-                    <h6 class="text-sm font-light text-neutral-800">Gasto</h6>
+                    <h6 class="text-sm font-light text-neutral-800">Gasto Combustible</h6>
                     <p class="flex items-center gap-1">
                         <span class="text-xl font-semibold text-neutral-700">{{ bills }}</span>
                         <span class="text-sm font-light text-neutral-600">Bs</span>
                     </p>
                 </div>
                 <div class="border bg-white rounded-lg col-span-1 flex flex-col justify-center items-center h-20 shadow-md">
-                    <h6 class="text-sm font-light text-neutral-800">Consumo</h6>
+                    <h6 class="text-sm font-light text-neutral-800">Litros Cargados</h6>
                     <p class="flex items-center gap-1">
-                        <span class="text-xl font-semibold text-neutral-700">{{ consumption }}</span>
+                        <span class="text-xl font-semibold text-neutral-700">{{ liters }}</span>
                         <span class="text-sm font-light text-neutral-600">Lts</span>
+                    </p>
+                </div>
+                <div class="border bg-white rounded-lg col-span-1 flex flex-col justify-center items-center h-20 shadow-md">
+                    <h6 class="text-sm font-light text-neutral-800">Distancia</h6>
+                    <p class="flex items-center gap-1">
+                        <span class="text-xl font-semibold text-neutral-700">{{ distance }}</span>
+                        <span class="text-sm font-light text-neutral-600">Km</span>
+                    </p>
+                </div>
+                <div class="border bg-white rounded-lg col-span-1 flex flex-col justify-center items-center h-20 shadow-md">
+                    <h6 class="text-sm font-light text-neutral-800">Odometro</h6>
+                    <p class="flex items-center gap-1">
+                        <span class="text-xl font-semibold text-neutral-700">{{ odometer }}</span>
+                        <span class="text-sm font-light text-neutral-600">Km</span>
                     </p>
                 </div>
             </section>

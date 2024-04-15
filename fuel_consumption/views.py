@@ -6,6 +6,7 @@ from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView, DeleteView, CreateView, UpdateView, TemplateView
 from django.utils import timezone
+from django.db.models import Q
 
 from .forms import FuelingForm
 from .models import Fueling
@@ -20,15 +21,17 @@ class DashboardTemplateView(LoginRequiredMixin, TemplateView):
         end = timezone.now().replace(day=1, month=begin.month + 1, hour=23, minute=59, second=59) - timedelta(days=1)
         qs = Fueling.objects.filter(user=self.request.user, upload_date__range=(begin, end)).all()
 
-        consumption = 0
+        liters = 0
         bills = 0
 
         for f in qs:
             bills += f.total
-            consumption += f.liters
+            liters += f.liters
 
-        context['consumption'] = round(consumption)
+        context['liters'] = round(liters)
         context['bills'] = round(bills)
+        context['distance'] = round(qs.last().odometer - qs.first().odometer)
+        context['odometer'] = round(qs.last().odometer)
 
         return context
 
@@ -38,7 +41,11 @@ class FuelingListView(LoginRequiredMixin, ListView):
     template_name = 'fuel_consumption/fueling_list.html'
 
     def get_queryset(self):
-        qs = Fueling.objects.filter(user=self.request.user).order_by('-upload_date')[:20]
+        search = self.request.GET.get('q', '')
+        qs = Fueling.objects.select_related('fuel_type').filter(
+            Q(fuel_type__name__icontains=search),
+            user=self.request.user
+        ).order_by('-upload_date')[:20]
         return qs
 
 

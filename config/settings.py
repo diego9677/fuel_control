@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_extensions',
     'fuel_consumption',
 ]
 
@@ -135,3 +136,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'index'
 LOGOUT_REDIRECT_URL = 'login'
+
+
+# dev section
+SHELL_PLUS = "ipython"
+SHELL_PLUS_PRINT_SQL = True
