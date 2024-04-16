@@ -21,8 +21,8 @@ class VehicleType(models.Model):
 
 
 class Vehicle(models.Model):
-    user = models.ForeignKey(User, null=True, related_name='vehicles', on_delete=models.CASCADE)
-    vehicle_type = models.ForeignKey(VehicleType, related_name='vehicles', on_delete=models.CASCADE)
+    user = models.ForeignKey(User, null=True, related_name='vehicles', on_delete=models.CASCADE, verbose_name='Usuario')
+    vehicle_type = models.ForeignKey(VehicleType, related_name='vehicles', on_delete=models.CASCADE, verbose_name='Tipo de Vehiculo')
     plate = models.CharField(max_length=200, unique=True, verbose_name='Placa')
 
     @property
