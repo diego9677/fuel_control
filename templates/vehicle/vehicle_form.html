@@ -14,39 +14,27 @@
             </a>
             <div class="flex-1">
                 <h5 class="text-base text-neutral-700 font-semibold text-center">
-                    {% if object %}Editar{% else %}Nueva{% endif %} Carga de Combustible
+                    {% if object %}Editar{% else %}Nuevo{% endif %} Vehiculo
                 </h5>
             </div>
         </header>
         <form class="flex flex-col gap-6 px-4" method="post">{% csrf_token %}
 
             <label class="flex flex-col gap-1">
-                <span class="text-sm font-normal text-neutral-700">{{ form.vehicle.label }}</span>
-                {{ form.vehicle|addclss:"input h-10" }}
+                <span class="text-sm font-normal text-neutral-700">{{ form.vehicle_type.label }}</span>
+                {{ form.vehicle_type|addclss:"input h-10" }}
             </label>
 
             <label class="flex flex-col gap-1">
-                <span class="text-sm font-normal text-neutral-700">{{ form.fuel_type.label }}</span>
-                {{ form.fuel_type|addclss:"input h-10" }}
-            </label>
-            <label class="flex flex-col gap-1">
-                <span class="text-sm font-normal text-neutral-700">{{ form.upload_date.label }}</span>
-                {{ form.upload_date|addclss:"input h-10" }}
-            </label>
-            <label class="flex flex-col gap-1">
-                <span class="text-sm font-normal text-neutral-700">{{ form.liters.label }}</span>
-                {{ form.liters|addclss:"input h-10" }}
-            </label>
-            <label class="flex flex-col gap-1">
-                <span class="text-sm font-normal text-neutral-700">{{ form.odometer.label }}</span>
-                {{ form.odometer|addclss:"input h-10" }}
+                <span class="text-sm font-normal text-neutral-700">{{ form.plate.label }}</span>
+                {{ form.plate|addclss:"input h-10" }}
             </label>
 
             <div class="flex gap-2 items-center">
                 
                 {% if object %}    
                     <div class="flex-1 flex">
-                        <a href="{% url 'fueling-delete' object.pk %}" class="flex-1 h-10 text-center btn-danger">Eliminar</a>
+                        <a href="{% url 'vehicle-delete' object.pk %}" class="flex-1 h-10 text-center btn-danger">Eliminar</a>
                     </div>
                 {% endif %}
                     

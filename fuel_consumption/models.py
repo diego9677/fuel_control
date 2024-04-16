@@ -8,6 +8,51 @@ FUEL_TYPES = {
 }
 
 
+class VehicleType(models.Model):
+    name = models.CharField(max_length=200, verbose_name='Nombre')
+    description = models.TextField(null=True, blank=True, verbose_name='Descripción')
+
+    def __str__(self) -> str:
+        return self.name
+
+    class Meta:
+        verbose_name = 'Tipo de Vehiculo'
+        verbose_name_plural = 'Tipos de Vehiculos'
+
+
+class Vehicle(models.Model):
+    user = models.ForeignKey(User, null=True, related_name='vehicles', on_delete=models.CASCADE)
+    vehicle_type = models.ForeignKey(VehicleType, related_name='vehicles', on_delete=models.CASCADE)
+    plate = models.CharField(max_length=200, unique=True, verbose_name='Placa')
+
+    @property
+    def distance(self):
+        fuel_loads = self.fuel_loads.all()
+        count = len(fuel_loads)
+        result = 0
+        if count > 0:
+            last = fuel_loads[0]
+            first = fuel_loads[count - 1]
+            result = round(last.odometer - first.odometer)
+        return result
+
+    @property
+    def odometer(self):
+        loads = self.fuel_loads.all()
+        count = len(loads)
+        if count > 0:
+            last = loads[0]
+            return round(last.odometer)
+        return 0
+
+    def __str__(self) -> str:
+        return self.plate
+
+    class Meta:
+        verbose_name = 'Vehiculo'
+        verbose_name_plural = 'Vehiculos'
+
+
 class FuelType(models.Model):
     name = models.CharField(choices=FUEL_TYPES, max_length=200, verbose_name='Nombre')
     price = models.DecimalField(max_digits=18, decimal_places=2, verbose_name='Precio por litro')
@@ -23,6 +68,7 @@ class FuelType(models.Model):
 
 
 class Fueling(models.Model):
+    vehicle = models.ForeignKey(Vehicle, null=True, related_name='fuel_loads', on_delete=models.CASCADE, verbose_name='Vehiculo')
     user = models.ForeignKey(User, related_name='fuel_loads', on_delete=models.CASCADE, verbose_name='Usuario')
     fuel_type = models.ForeignKey(FuelType, related_name='fuel_loads', on_delete=models.CASCADE, verbose_name='Tipo de Combustible')
     upload_date = models.DateTimeField(verbose_name='Fecha de Carga')

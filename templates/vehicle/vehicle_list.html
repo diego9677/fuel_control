@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+
+{% block title %}Vehiculos{% endblock title %}
+
+
+
+{% block content %}
+<section class="flex flex-col h-full">
+    <header class="h-12 border-b flex items-center px-4">
+        
+        <a href="{% url 'fueling-list' %}" class="w-8 h-8 btn-secondary">
+            <i class="las la-arrow-left"></i>
+        </a>
+
+        <div class="flex-1">
+            <h5 class="text-base text-center font-semibold text-neutral-700">Listado de Vehiculos</h5>
+        </div>
+
+    </header>
+
+    <div class="border-b h-12 flex items-center px-4">
+        <a href="{% url 'vehicle-create' %}" class="w-8 h-8 btn-primary">
+            <i class="las la-plus"></i>
+        </a>
+        <div class="w-10"></div>
+        <form class="flex-1 flex items-center gap-2" method="get">
+            <div class="flex-1">
+                <input type="text" name="q" placeholder="Busar..." class="input h-8" value="{{ request.GET.q }}">
+            </div>
+            <button type="submit" class="btn-success w-8 h-8">
+                <i class="las la-search"></i>
+            </button>
+        </form>
+    </div>
+    
+    <div class="flex-1 overflow-auto">
+        
+        {% for vehicle in object_list %}
+            <a class="px-4 py-2 flex flex-col gap-1 border-b border-neutral-300" href="{% url 'vehicle-update' vehicle.pk %}">
+                <h6 class="text-base font-medium">{{ vehicle.plate }}</h6>
+                <span class="text-sm font-light">{{ vehicle.vehicle_type.name }}</span>
+            </a>
+        {% endfor %}
+            
+    </div>
+</section>
+{% endblock content %}
+    

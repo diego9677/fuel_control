@@ -16,6 +16,10 @@
                 <h5 class="text-base text-center font-semibold text-neutral-700">Listado de cargas de combustible</h5>
             </div>
 
+            <a href="{% url 'vehicle-list' %}" class="w-8 h-8 btn-secondary">
+                <i class="las la-car-side"></i>
+            </a>
+
         </header>
 
         <div class="border-b h-12 flex items-center px-4">
@@ -38,11 +42,12 @@
             {% for fueling in object_list %}
                 <a class="px-4 py-2 flex justify-between items-start border-b border-neutral-300" href="{% url 'fueling-update' fueling.pk %}">
                     <div class="flex flex-col gap-1">
-                        <h6 class="text-base font-medium">{{ fueling.fuel_type.get_name_display }}</h6>
-                        <span class="text-sm font-light">{{ fueling.liters }} L</span>
-                        <span class="text-sm font-light">{{ fueling.total }} Bs</span>
+                        <p class="text-sm font-base text-neutral-700">{{ fueling.vehicle.plate }} <span class="text-xs font-light text-neutral-600">({{ fueling.vehicle.vehicle_type.name }})</span></p>
+                        <h6 class="text-base font-medium text-neutral-800">{{ fueling.fuel_type.get_name_display }}</h6>
+                        <span class="text-sm font-light text-neutral-600">{{ fueling.liters }} L</span>
+                        <span class="text-sm font-light text-neutral-600">{{ fueling.total }} Bs</span>
                     </div>
-                    <span class="text-sm font-light">{{ fueling.upload_date|date:'d-m-y, H:i' }}</span>
+                    <span class="text-sm font-light text-neutral-700">{{ fueling.upload_date|date:'d-m-y, H:i' }}</span>
                 </a>
             {% endfor %}
                 
