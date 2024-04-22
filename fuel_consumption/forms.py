@@ -20,4 +20,4 @@ class FuelingForm(forms.ModelForm):
 class VehicleForm(forms.ModelForm):
     class Meta:
         model = Vehicle
-        fields = ['plate', 'vehicle_type']
+        fields = ['plate', 'vehicle_type', 'brand', 'model', 'year']
