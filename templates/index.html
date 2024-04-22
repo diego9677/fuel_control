@@ -57,8 +57,7 @@
                     <div class="flex border-b p-4 items-center">
                         <section class="w-64 flex flex-col gap-1">
                             <p class="text-base font-semibold text-neutral-800">{{ v.plate }}</p>
-                            <span class="text-sm font-light text-neutral-700">{{ v.vehicle_type.name }}</span>
-                            <span class="text-xs font-light text-neutral-600">{{ v.brand }} {{ v.model }} {{ v.year }}</span>
+                            <span class="text-sm font-light text-neutral-700">({{ v.vehicle_type.name }}) - {{ v.brand }} {{ v.model }} {{ v.year }}</span>
                         </section>
 
                         <div class="flex-1">
