@@ -30,6 +30,22 @@
                 {{ form.plate|addclss:"input h-10" }}
             </label>
 
+            <label class="flex flex-col gap-1">
+                <span class="text-sm font-normal text-neutral-700">{{ form.brand.label }}</span>
+                {{ form.brand|addclss:"input h-10" }}
+            </label>
+
+            <label class="flex flex-col gap-1">
+                <span class="text-sm font-normal text-neutral-700">{{ form.model.label }}</span>
+                {{ form.model|addclss:"input h-10" }}
+            </label>
+
+            
+            <label class="flex flex-col gap-1">
+                <span class="text-sm font-normal text-neutral-700">{{ form.year.label }}</span>
+                {{ form.year|addclss:"input h-10" }}
+            </label>
+
             <div class="flex gap-2 items-center">
                 
                 {% if object %}    
