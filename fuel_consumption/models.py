@@ -22,6 +22,9 @@ class VehicleType(models.Model):
 
 class Vehicle(models.Model):
     user = models.ForeignKey(User, null=True, related_name='vehicles', on_delete=models.CASCADE, verbose_name='Usuario')
+    brand = models.CharField(default='', max_length=250, verbose_name='Marca')
+    model = models.CharField(default='', max_length=250, verbose_name='Modelo')
+    year = models.CharField(default=0, max_length=4, verbose_name='Año')
     vehicle_type = models.ForeignKey(VehicleType, related_name='vehicles', on_delete=models.CASCADE, verbose_name='Tipo de Vehiculo')
     plate = models.CharField(max_length=200, unique=True, verbose_name='Placa')
 
@@ -44,6 +47,22 @@ class Vehicle(models.Model):
             last = loads[0]
             return round(last.odometer)
         return 0
+
+    @property
+    def spent(self):
+        loads = self.fuel_loads.all()
+        result = 0
+        for load in loads:
+            result += (load.liters * load.fuel_type.price)
+        return round(result, 1)
+
+    @property
+    def liters(self):
+        loads = self.fuel_loads.all()
+        result = 0
+        for load in loads:
+            result += load.liters
+        return round(result, 1)
 
     def __str__(self) -> str:
         return self.plate
