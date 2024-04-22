@@ -40,6 +40,7 @@
             <a class="px-4 py-2 flex flex-col gap-1 border-b border-neutral-300" href="{% url 'vehicle-update' vehicle.pk %}">
                 <h6 class="text-base font-medium">{{ vehicle.plate }}</h6>
                 <span class="text-sm font-light">{{ vehicle.vehicle_type.name }}</span>
+                <span class="text-sm font-light">{{ vehicle.brand }} {{ vehicle.model }} {{ vehicle.year }}</span>
             </a>
         {% endfor %}
             
