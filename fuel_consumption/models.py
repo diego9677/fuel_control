@@ -54,7 +54,7 @@ class Vehicle(models.Model):
         result = 0
         for load in loads:
             result += (load.liters * load.fuel_type.price)
-        return round(result, 1)
+        return round(result)
 
     @property
     def liters(self):
@@ -62,7 +62,7 @@ class Vehicle(models.Model):
         result = 0
         for load in loads:
             result += load.liters
-        return round(result, 1)
+        return round(result)
 
     def __str__(self) -> str:
         return self.plate
