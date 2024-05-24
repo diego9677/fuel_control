@@ -17,11 +17,17 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+from django.views.generic import TemplateView
 from django.views.generic import RedirectView
+
+# FRONTEND_URLS = [
+#     '',
+# ]
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('fueling/', include('fuel_consumption.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
-    path('', RedirectView.as_view(pattern_name='dashboard'), name='index')
+    path('wa/', TemplateView.as_view(template_name='index_react.html'), name='web_app'),
+    path('', RedirectView.as_view(pattern_name='web_app'), name='index')
 ]

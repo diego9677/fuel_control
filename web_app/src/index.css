@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+.bg-image {
+  background-image: url('fondo2.jpg');
+  background-repeat: no-repeat;
+  background-position: top left;
+  background-size: cover;
+  z-index: -1;
+  width: 100%;
+}
