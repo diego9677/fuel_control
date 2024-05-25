@@ -16,18 +16,26 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
 
 from django.views.generic import TemplateView
-from django.views.generic import RedirectView
+# from django.views.generic import RedirectView
 
-# FRONTEND_URLS = [
-#     '',
-# ]
+FRONTEND_URLS = [
+    'evaluation/',
+    'withdrawal/',
+]
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('fueling/', include('fuel_consumption.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
-    path('wa/', TemplateView.as_view(template_name='index_react.html'), name='web_app'),
-    path('', RedirectView.as_view(pattern_name='web_app'), name='index')
+    # path('', RedirectView.as_view(pattern_name='dashboard'), name='index')
 ]
+
+urlpatterns += [path(url, TemplateView.as_view(template_name='index_react.html')) for url in FRONTEND_URLS]
+urlpatterns += [path('', TemplateView.as_view(template_name='index_react.html'), name='index')]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

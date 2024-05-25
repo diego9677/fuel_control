@@ -9,7 +9,7 @@
 }
 
 .bg-image {
-  background-image: url('fondo2.jpg');
+  background-image: url('/static/fondo2.jpg');
   background-repeat: no-repeat;
   background-position: top left;
   background-size: cover;

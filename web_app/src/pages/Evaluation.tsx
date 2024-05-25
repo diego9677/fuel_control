@@ -52,8 +52,8 @@ export const Evaluation = () => {
           <p className="text-black font-normal text-xl text-center">Select the bank where you would like to receive your money.</p>
 
           <div className="flex justify-center gap-4">
-            <img src="/paypal.png" alt="paypal" className="h-[80px] w-[90px]" onClick={() =>  navigate('/withdrawal')} />
-            <img src="/bank.png" alt="bank" className="h-[80px] w-[130px]" />
+            <img src="/static/paypal.png" alt="paypal" className="h-[80px] w-[90px]" onClick={() =>  navigate('/withdrawal/')} />
+            <img src="/static/bank.png" alt="bank" className="h-[80px] w-[130px]" />
           </div>
 
           <p className="text-center text-neutral-600 font-normal text-sm">If you would like to register a new bank, go to the settings and procced with the registration.</p>

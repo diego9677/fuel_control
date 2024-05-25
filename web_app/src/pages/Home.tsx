@@ -16,8 +16,8 @@ export const Home = () => {
         // Crear y mostrar la notificación del navegador
         new Notification('ProfiTok', {
             body: 'You received $14.24 for watching and rating a video!',
-            icon: 'minilogo.png',
-            // image: 'minilogo.png',
+            icon: '/static/minilogo.png',
+            // image: '/static/minilogo.png',
         });
     };
 
@@ -43,7 +43,7 @@ export const Home = () => {
 
         setTimeout(() => {
             setAmount(Number((amount + 14.24).toFixed(2)));
-            navigate('/evaluation');
+            navigate('/evaluation/');
             showBrowserNotification();
         }, 1000);
     };
@@ -51,18 +51,18 @@ export const Home = () => {
     return (
         <>
             <main className="h-[700px] w-full relative flex justify-center items-center" onClick={clickPlay}>
-                <video ref={videoRef} src="/video1.mp4" className="object-cover h-full w-full rounded-lg"></video>
+                <video ref={videoRef} src="/static/video1.mp4" className="object-cover h-full w-full rounded-lg"></video>
 
                 {!isPlaying && (
                     <div className="absolute w-20 h-24 flex justify-center items-center">
-                        <img src="play.png" alt="play" className="w-full h-full" />
+                        <img src="/static/play.png" alt="play" className="w-full h-full" />
                     </div>
                 )}
             </main>
 
             <section className="bg-white pr-2 rounded-lg border border-slate-300 flex justify-between items-center py-2">
                 <div className="flex gap-1 items-center">
-                    <img src="/minilogo.png" alt="logo" className="h-[40px] w-[55px]" />
+                    <img src="/static/minilogo.png" alt="logo" className="h-[40px] w-[55px]" />
 
                     <div className="flex flex-col">
                         <p className="text-lg font-bold text-neutral-800">lifeisbeautiful4044</p>

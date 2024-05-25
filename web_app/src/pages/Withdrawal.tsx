@@ -26,8 +26,8 @@ export const Withdrawal = () => {
         // Crear y mostrar la notificación del navegador
         new Notification('PayPal', {
             body: `You have received a transfer of $${amount}`,
-            icon: 'paypalmini.png',
-            // image: 'minilogo.png',
+            icon: '/static/paypalmini.png',
+            // image: '/static/paypalmini.png',
         });
 
         setAmount(0);
